@@ -1,0 +1,5 @@
+;; Awwyeah.
+(in-package :stumpwm)
+
+(run-shell-command "xsetroot -cursor_name left_ptr")
+(set-prefix-key (kbd "C-z"))
