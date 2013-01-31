@@ -14,6 +14,9 @@ HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.zsh_history
 
+# Use pushd when changing dirs
+setopt autopushd
+
 # Use modern completion system
 autoload -Uz compinit
 compinit
