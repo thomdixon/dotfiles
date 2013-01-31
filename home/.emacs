@@ -1,20 +1,26 @@
-;; setup
+;; Setup
 ; put backups in a special directory
 (setq backup-directory-alist (list (cons ".*" (expand-file-name "~/.emacs-backup/"))))
-(setq compilation-window-height 20)     ; Smaller compile window
+(setq compilation-window-height 20)         ; Smaller compile window
 (setq inhibit-spash-screen t)               ;
 (setq inhibit-startup-screen t)             ;
 (setq inhibit-startup-echo-area-message t)  ; Get rid of annoying junk
 (blink-cursor-mode -1)                      ;
 (menu-bar-mode -1)                          ;
+(set-language-environment "UTF-8")
 
-;; utility
+;; Utility
 (global-set-key [(f9)] 'compile)      ; Convenient compile key
 (global-set-key (kbd "C-x C-c") nil)  ; Make sure we don't accidentally quit emacs
 (global-set-key "\C-cg" 'goto-line)   ; C-c-g is a goto-line key
 
-;; latex
+;; Extra junk (like paredit)
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/"))
+
+;; LaTeX
 (setq TeX-PDF-mode t)
+(load "auctex.el" nil t t) 
+(load "preview-latex.el" nil t t)
 
 ;; C 
 (require 'cc-mode)
@@ -58,7 +64,7 @@
     (c-block-comments-indent-p . t)
     (c-recognize-knr-p . nil)
     )
-  "(c) Robert Smith, 2007-09")
+  "(c) Robert Smith, 2007-13")
 
 (defun tots-hook ()
   ;; add style and set it for the current buffer
@@ -105,6 +111,19 @@
   (setq indent-tabs-mode nil)) ;; force only spaces for indentation
 (add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
 
+;; Common Lisp
+(load (expand-file-name "~/quicklisp/slime-helper.el"))
+(slime-setup '(slime-fancy slime-banner slime-asdf))
+(font-lock-add-keywords
+ 'lisp-mode
+ '(("\\<\\(t\\|nil\\)\\>" . font-lock-constant-face)
+))
+(custom-set-variables '(inferior-lisp-program "sbcl"))
+(autoload 'paredit-mode "paredit"
+  "Minor mode for pseudo-structurally editing Lisp code." t)
+(add-hook 'lisp-mode-hook (lambda () (paredit-mode +1)))
+(setq slime-net-coding-system 'utf-8-unix)
+
 ;;(setq exec-path
 ;;    '(
 ;;     "/home/thomas/bin/texlive/2008/bin/x86_64-linux"
@@ -113,34 +132,8 @@
 ;;      "/usr/local/bin"
 ;;    ))
 
-;; Junk (like paredit)
-(add-to-list 'load-path "/home/thomas/.emacs.d/")
-
-
-(load "auctex.el" nil t t) 
-(load "preview-latex.el" nil t t)
-
-(load (expand-file-name "~/quicklisp/slime-helper.el"))
-(slime-setup '(slime-fancy slime-banner slime-asdf))
-(font-lock-add-keywords
- 'lisp-mode
- '(("\\<\\(t\\|nil\\)\\>" . font-lock-constant-face)
-))
-
-(custom-set-variables '(inferior-lisp-program "sbcl"))
-
+;; Theme
 (require 'color-theme)
 (color-theme-initialize)
 (color-theme-charcoal-black)
-
-(autoload 'paredit-mode "paredit"
-      "Minor mode for pseudo-structurally editing Lisp code." t)
-    (add-hook 'lisp-mode-hook             (lambda () (paredit-mode +1)))
-
-(set-language-environment "UTF-8")
-(setq slime-net-coding-system 'utf-8-unix)
-
-(add-to-list 'load-path (expand-file-name "/home/thomas/bin/sage-4.7.1-linux-64bit-ubuntu_10.04.1_lts-x86_64-Linux/data/emacs"))
-(require 'sage "sage")
-(setq sage-command "/home/thomas/bin/sage-4.7.1-linux-64bit-ubuntu_10.04.1_lts-x86_64-Linux/sage")
 
