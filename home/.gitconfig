@@ -1,0 +1,20 @@
+[user]
+    name = Thom Dixon
+    email = thom@thomdixon.org
+[core]
+    editor = emacs -nw -Q
+    excludesfile = ~/.gitignore
+[alias]
+    br = branch
+    co = checkout
+    stats = status
+    st = status
+    df = diff
+    diffstat = diff --stat
+    graphlong = log --graph
+    graph = log --graph --oneline
+[diff "odt"]
+    binary = true
+    textconv = odt2txt
+[color]
+    ui = auto
