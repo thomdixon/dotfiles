@@ -133,7 +133,8 @@
 ;;    ))
 
 ;; Theme
-(require 'color-theme)
-(color-theme-initialize)
-(color-theme-charcoal-black)
+;; (disabled because it slows launch)
+;; (require 'color-theme)
+;; (color-theme-initialize)
+;; (color-theme-charcoal-black)
 
