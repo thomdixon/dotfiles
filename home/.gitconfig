@@ -2,7 +2,7 @@
     name = Thom Dixon
     email = thom@thomdixon.org
 [core]
-    editor = emacs -nw -Q
+    editor = emacs -nw
     excludesfile = ~/.gitignore
 [alias]
     br = branch
