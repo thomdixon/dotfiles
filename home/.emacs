@@ -9,6 +9,7 @@
 (menu-bar-mode -1)                          ;
 (set-language-environment "UTF-8")          ;
 (set-background-color "black")              ;
+(set-foreground-color "white")              ;
 
 ;; Utility
 (global-set-key [(f9)] 'compile)      ; Convenient compile key
