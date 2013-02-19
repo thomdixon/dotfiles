@@ -7,7 +7,8 @@
 (setq inhibit-startup-echo-area-message t)  ; Get rid of annoying junk
 (blink-cursor-mode -1)                      ;
 (menu-bar-mode -1)                          ;
-(set-language-environment "UTF-8")
+(set-language-environment "UTF-8")          ;
+(set-background-color "black")              ;
 
 ;; Utility
 (global-set-key [(f9)] 'compile)      ; Convenient compile key
