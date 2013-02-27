@@ -13,7 +13,7 @@
 
 ;; Utility
 (global-set-key [(f9)] 'compile)      ; Convenient compile key
-(global-set-key (kbd "C-x C-c") nil)  ; Make sure we don't accidentally quit emacs
+; (global-set-key (kbd "C-x C-c") nil)  ; Make sure we don't accidentally quit emacs
 (global-set-key "\C-cg" 'goto-line)   ; C-c-g is a goto-line key
 
 ;; Extra junk (like paredit)
