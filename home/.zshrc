@@ -1,5 +1,4 @@
 # Set up the prompt
-
 autoload -Uz promptinit
 promptinit
 prompt adam1
@@ -48,3 +47,8 @@ alias apts='aptitude search'
 aptr() { sudo aptitude remove "$*" && sudo apt-get autoremove; }
 
 alias ls='ls --color'
+
+# Finally, attach to a tmux session or create one if tmux is present
+if which tmux 2>&1 >/dev/null; then
+    test -z "$TMUX" && (tmux attach || tmux new-session)
+fi
