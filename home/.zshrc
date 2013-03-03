@@ -50,5 +50,5 @@ alias ls='ls --color'
 
 # Finally, attach to a tmux session or create one if tmux is present
 if which tmux 2>&1 >/dev/null; then
-    test -z "$TMUX" && (tmux attach || tmux new-session)
+    test -z "$TMUX" && tmux new-session
 fi
