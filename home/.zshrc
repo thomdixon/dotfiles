@@ -48,7 +48,7 @@ aptr() { sudo aptitude remove "$*" && sudo apt-get autoremove; }
 
 alias ls='ls --color'
 
-# Finally, attach to a tmux session or create one if tmux is present
+# Finally, create a session if tmux is present
 if which tmux 2>&1 >/dev/null; then
     test -z "$TMUX" && tmux new-session
 fi
