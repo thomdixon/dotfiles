@@ -48,6 +48,8 @@ aptr() { sudo aptitude remove "$*" && sudo apt-get autoremove; }
 
 alias ls='ls --color'
 
+alias ccat='pygmentize -O bg=dark'
+
 # Finally, create a session if tmux is present
 if which tmux 2>&1 >/dev/null; then
     test -z "$TMUX" && tmux new-session
