@@ -46,6 +46,8 @@ alias aptu='sudo aptitude update && sudo aptitude safe-upgrade';
 alias apts='aptitude search'
 aptr() { sudo aptitude remove "$*" && sudo apt-get autoremove; }
 
+function rm () { /bin/rm $@ -I; }
+
 alias ls='ls --color'
 
 alias ccat='pygmentize -O bg=dark'
