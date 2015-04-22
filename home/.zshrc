@@ -40,6 +40,8 @@ alias lf="ls -f"
 
 rm() { grm $@ -I }
 
+alias fuck='$(thefuck $(fc -ln -1))'
+
 # make cd perform ls, with truncation for long output
 cd() { builtin cd "$@" && _truncated_ls }
 popd() { builtin popd "$@" && _truncated_ls }
