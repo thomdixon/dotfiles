@@ -1,14 +1,33 @@
-export ZSH=$HOME/.oh-my-zsh
+# Use antigen
+source $HOME/.antigen.zsh
 
-ZSH_THEME="robbyrussell"
+antigen use oh-my-zsh
 
-plugins=(git tmux gitignore python brew sublime sudo vagrant jsontools wd)
+antigen bundles <<EOBUNDLES
+  autoenv
+  brew
+  command-not-found
+  git
+  gitignore
+  jsontools
+  python
+  sudo
+  vagrant
+  wd
+  zsh-users/zsh-syntax-highlighting
+EOBUNDLES
 
+# The tmux plugin is a little finnicky and doesn't like to be loaded at the
+# same time as the others
 ZSH_TMUX_AUTOSTART=true
+antigen bundle tmux
 
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+# Set our PATH before applying
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin"
 
-source $ZSH/oh-my-zsh.sh
+antigen theme robbyrussell 
+
+antigen apply
 
 # unquote
 alias unq="sed -e 's/^\"\(.*\)\"$/\1/g'"
@@ -38,7 +57,12 @@ ls() {
 alias l="ls -A"
 alias lf="ls -f"
 
-rm() { grm $@ -I }
+# Vagrant aliases
+alias vu="vagrant up"
+alias vd="vagrant destroy -f"
+alias vst="vagrant status"
+alias vgst="vagrant global-status"
+alias vssh="vagrant ssh"
 
 alias fuck='$(thefuck $(fc -ln -1))'
 
@@ -89,3 +113,5 @@ _right_align() {
     [[ $PADDING -gt 0 ]] && builtin printf "%${PADDING}s"
     builtin echo "$1"
 }
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
