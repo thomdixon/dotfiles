@@ -9,3 +9,5 @@
     textconv = odt2txt
 [color]
     ui = auto
+[push]
+	default = simple

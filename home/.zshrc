@@ -22,10 +22,10 @@ EOBUNDLES
 ZSH_TMUX_AUTOSTART=true
 antigen bundle tmux
 
+antigen theme robbyrussell
+
 # Set our PATH before applying
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin"
-
-antigen theme robbyrussell 
 
 antigen apply
 
@@ -47,13 +47,13 @@ tree() {
     command tree --charset UTF8 -C "$@" | less -RXF
 }
 
+# map ls to gls installed via coreutils in brew, and add some aliases
 ls() {
   gls --group-directories-first \
       --format=across \
       --color=always \
       --width=$COLUMNS $@
 }
-
 alias l="ls -A"
 alias lf="ls -f"
 
@@ -64,7 +64,8 @@ alias vst="vagrant status"
 alias vgst="vagrant global-status"
 alias vssh="vagrant ssh"
 
-alias fuck='$(thefuck $(fc -ln -1))'
+# use thefuck
+eval "$(thefuck --alias)"
 
 # make cd perform ls, with truncation for long output
 cd() { builtin cd "$@" && _truncated_ls }
