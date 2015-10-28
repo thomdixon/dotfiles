@@ -47,16 +47,6 @@ tree() {
     command tree --charset UTF8 -C "$@" | less -RXF
 }
 
-# map ls to gls installed via coreutils in brew, and add some aliases
-ls() {
-  gls --group-directories-first \
-      --format=across \
-      --color=always \
-      --width=$COLUMNS $@
-}
-alias l="ls -A"
-alias lf="ls -f"
-
 # Vagrant aliases
 alias vu="vagrant up"
 alias vd="vagrant destroy -f"
@@ -80,6 +70,17 @@ if hash gls >/dev/null 2>&1; then
 else
     _GLS_COMMAND=ls
 fi
+
+# map ls to gls installed via coreutils in brew, and add some aliases
+ls() {
+  command $_GLS_COMMAND --group-directories-first \
+                        --format=across \
+                        --color=always \
+                        --width=$COLUMNS $@
+}
+
+alias l="ls -A"
+alias lf="ls -f"
 
 # a pretty ls truncated to at most N lines; helper function for cd, popd, pushd
 _truncated_ls() {
