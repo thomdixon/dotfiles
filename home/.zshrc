@@ -58,7 +58,7 @@ alias vssh="vagrant ssh"
 eval "$(thefuck --alias)"
 
 # make cd perform ls, with truncation for long output
-cd() { builtin cd "$@" && _truncated_ls }
+cd() { autoenv_cd "$@" && _truncated_ls }
 popd() { builtin popd "$@" && _truncated_ls }
 pushd() { builtin pushd "$@" && _truncated_ls }
 
@@ -116,4 +116,13 @@ _right_align() {
     builtin echo "$1"
 }
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+# RVM
+export PATH="$PATH:$HOME/.rvm/bin"
+
+# NVM
+export NVM_DIR=~/.nvm
+source $(brew --prefix nvm)/nvm.sh
+
+# TeX
+export PATH="$PATH:/usr/texbin"
+
