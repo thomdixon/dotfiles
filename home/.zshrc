@@ -44,18 +44,11 @@ tree() {
     command tree --charset UTF8 -C "$@" | less -RXF
 }
 
-# Vagrant aliases
-alias vu="vagrant up"
-alias vd="vagrant destroy -f"
-alias vst="vagrant status"
-alias vgst="vagrant global-status"
-alias vssh="vagrant ssh"
-
 # use thefuck
 eval "$(thefuck --alias)"
 
 # make cd perform ls, with truncation for long output
-cd() { autoenv_cd "$@" && _truncated_ls }
+cd() { builtin cd "$@" && _truncated_ls }
 popd() { builtin popd "$@" && _truncated_ls }
 pushd() { builtin pushd "$@" && _truncated_ls }
 
@@ -124,11 +117,4 @@ _right_align() {
 
 # RVM
 export PATH="$PATH:$HOME/.rvm/bin"
-
-# NVM
-export NVM_DIR=~/.nvm
-source $(brew --prefix nvm)/nvm.sh
-
-# TeX
-export PATH="$PATH:/usr/texbin"
 
