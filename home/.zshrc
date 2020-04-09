@@ -4,15 +4,12 @@ source $HOME/.antigen.zsh
 antigen use oh-my-zsh
 
 antigen bundles <<EOBUNDLES
-  autoenv
-  brew
   command-not-found
   git
   gitignore
   jsontools
   python
   sudo
-  vagrant
   wd
   zsh-users/zsh-syntax-highlighting
 EOBUNDLES
@@ -61,6 +58,15 @@ eval "$(thefuck --alias)"
 cd() { autoenv_cd "$@" && _truncated_ls }
 popd() { builtin popd "$@" && _truncated_ls }
 pushd() { builtin pushd "$@" && _truncated_ls }
+
+# use neovim instead of vim if installed
+if hash nvim >/dev/null 2>&1; then
+    _VIM_COMMAND=nvim
+else
+    _VIM_COMMAND=vim
+fi
+
+vim() { command $_VIM_COMMAND $@ }
 
 # try to use gnu's version of ls, needed for --group-directories-first
 # on OS X, you'll need to run `brew install coreutils`
