@@ -2,7 +2,7 @@
     name = Thom Dixon
     email = thom@thomdixon.org
 [core]
-    editor = vim 
+    editor = nvim
     excludesfile = ~/.gitignore
 [diff "odt"]
     binary = true
@@ -10,4 +10,4 @@
 [color]
     ui = auto
 [push]
-	default = simple
+    default = simple
