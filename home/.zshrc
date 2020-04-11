@@ -19,7 +19,7 @@ EOBUNDLES
 ZSH_TMUX_AUTOSTART=true
 antigen bundle tmux
 
-antigen theme robbyrussell
+antigen theme ys
 
 # Set our PATH before applying
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin"
