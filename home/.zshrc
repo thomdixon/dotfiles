@@ -109,3 +109,6 @@ _right_align() {
 # RVM
 export PATH="$PATH:$HOME/.rvm/bin"
 
+# Python and others
+export PATH="$PATH:$HOME/.local/bin"
+
