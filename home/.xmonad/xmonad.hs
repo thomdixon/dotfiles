@@ -11,13 +11,17 @@ myTerminal = "terminator"
 myWorkspaces = ["term", "web", "chat", "dev"] ++ map show [5..9]
 
 -- fling the most commonly used programs for those tasks to those workspaces
-myManageHook = composeAll
-    [ className =? "firefox"         --> doShiftAndGo "web"
-    , className =? "Terminator"      --> doShiftAndGo "term"
-    , className =? "TelegramDesktop" --> doShiftAndGo "chat"
-    , className =? "code-oss"        --> doShiftAndGo "dev"
-    ] where
+myManageHook = (composeAll . concat $
+    [ [ className =? x --> doShiftAndGo "term" | x <- termApps ]
+    , [ className =? x --> doShiftAndGo "web"  | x <- webApps  ]
+    , [ className =? x --> doShiftAndGo "chat" | x <- chatApps ]
+    , [ className =? x --> doShiftAndGo "dev"  | x <- devApps  ]
+    ]) where
         doShiftAndGo ws = doF (W.greedyView ws) <+> doShift ws
+        termApps = ["Terminator"]
+        webApps  = ["firefox"]
+        chatApps = ["Slack", "TelegramDesktop", "Thunderbird", "trojita"]
+        devApps  = ["code-oss"]
 
 -- M-S-Fn flings window to workspace n and switches to it
 myKeys = [ ((shiftMask .|. myModMask, k), windows $ W.greedyView i . W.shift i)
